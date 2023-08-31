@@ -3,3 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.App {
+  width: 100vw;
+  min-height: 100vh;
+  background: linear-gradient(to right, #898608, #af1f9d);
+}
