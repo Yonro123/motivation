@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-
 import { Button, Spinner, Flex } from "@chakra-ui/react";
 
 import fetchMotivationData from "../../../lib/fetchMotivationData";
+
+import "./MotivationContent.css";
 
 export default function MotivationContent() {
   const [motivation, setMotivation] = useState({});
   const [waitingFetch, setWaitingFetch] = useState(false);
 
   const getData = async () => {
+    setWaitingFetch(true);
     const data = await fetchMotivationData();
     if (motivation.id === data.slip.id) {
       getData();
@@ -16,11 +18,6 @@ export default function MotivationContent() {
     }
     setMotivation(data.slip);
     setWaitingFetch(false);
-  };
-
-  const generateMotivation = () => {
-    setWaitingFetch(true);
-    getData();
   };
 
   useEffect(() => {
@@ -44,7 +41,7 @@ export default function MotivationContent() {
           background="linear-gradient(to right, #898608, #af1f9d)"
           color="white"
           borderRadius="10px"
-          onClick={generateMotivation}
+          onClick={getData}
         >
           Generate Motivation
         </Button>
